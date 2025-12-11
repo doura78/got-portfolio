@@ -1,4 +1,19 @@
-{{newCharacter.fullName}}
-{{newCharacter.id}}
-{{newCharacter.family}}
+<div class="characters-wrapper">
+  <!-- @for pour iterer sur le tableau FromApi-->
+   <!-- -->
+  <!-- @for (character of charactersFromParent; track character.id){
+  <div class="character-card">
+    <h1>{{character.fullName}}</h1>
+    <p>{{character.title}}</p>
+    <strong>{{character.family}}</strong>
+  </div>
+} @empty {
+  <p>No characters found.</p>
+} -->
 
+@for (item of dragonBallZ; track item) {
+    <h2>{{item}}</h2>
+} @empty {
+  <p>No characters found.</p>
+}
+</div>
