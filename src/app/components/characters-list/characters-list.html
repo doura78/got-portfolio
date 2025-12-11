@@ -1,19 +1,69 @@
 <div class="characters-wrapper">
   <!-- @for pour iterer sur le tableau FromApi-->
-   <!-- -->
-  <!-- @for (character of charactersFromParent; track character.id){
-  <div class="character-card">
-    <h1>{{character.fullName}}</h1>
-    <p>{{character.title}}</p>
-    <strong>{{character.family}}</strong>
-  </div>
-} @empty {
-  <p>No characters found.</p>
-} -->
-
-@for (item of dragonBallZ; track item) {
-    <h2>{{item}}</h2>
-} @empty {
-  <p>No characters found.</p>
-}
+  <!-- -->
+  @for (character of charactersFromParent; track character.id){
+ <div class="card-container" (click)="toggleCard(character.id)">
+      <div class="card" [class.flipped]="isCardFlipped(character.id)">
+        
+        <!-- Face avant : Image du personnage -->
+        <div class="card-face card-front">
+          <div class="image-container">
+            <img [src]="character.imageUrl" [alt]="character.fullName" class="character-image" />
+          </div>
+          <div class="card-title">
+            <h2>{{ character.fullName }}</h2>
+            <p class="subtitle">{{ character.title }}</p>
+          </div>
+          <div class="click-hint">Cliquez pour plus d'infos</div>
+        </div>
+        
+        <!-- Face arrière : Informations détaillées -->
+        <div class="card-face card-back">
+          <div class="back-header">
+            <h2>{{ character.fullName }}</h2>
+          </div>
+          
+          <div class="info-content">
+            <div class="info-section">
+              <div class="info-row">
+                <span class="label">Prénom:</span>
+                <span class="value">{{ character.firstName }}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Nom:</span>
+                <span class="value">{{ character.lastName }}</span>
+              </div>
+            </div>
+            
+            <div class="info-section">
+              <div class="info-row">
+                <span class="label">Titre:</span>
+                <span class="value">{{ character.title }}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Famille:</span>
+                <span class="value family-badge">{{ character.family }}</span>
+              </div>
+            </div>
+            
+            <div class="info-section">
+              <div class="info-row">
+                <span class="label">ID:</span>
+                <span class="value">{{ character.id }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="back-footer">
+            <small>Cliquez pour revenir</small>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  } @empty {
+    <div class="no-characters">
+      <p>Aucun personnage trouvé.</p>
+    </div>
+  }
 </div>

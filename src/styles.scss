@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+img {
+  object-fit: cover;
+  display: block;
+  border-bottom: 3px solid #daa520;
+}
+
+// // Exemple de variables SCSS pour un thème dynamique
+$primary-color: #4a90e2;   // bleu moderne
+$accent-color: #f5f7fa;    // gris clair
+$hover-color: darken($primary-color, 10%);
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+
+  .search-bar {
+    width: 500px;               // plus grande largeur
+    padding: 15px 20px;         // plus d’espace intérieur
+    font-size: 18px;            // texte plus grand
+    border-radius: 30px;        // coins arrondis
+    border: 2px solid $primary-color;
+    background-color: $accent-color;
+    color: #333;
+    transition: all 0.3s ease;  // effet dynamique
+
+    &:focus {
+      outline: none;
+      border-color: $hover-color;
+      box-shadow: 0 0 10px rgba($primary-color, 0.5);
+      background-color: white;
+    }
+
+    &:hover {
+      border-color: $hover-color;
+      transform: scale(1.02);   // léger zoom au survol
+    }
+  }
+}

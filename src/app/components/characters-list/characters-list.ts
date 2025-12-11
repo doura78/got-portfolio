@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {Characters} from '../../shared/models/characters.model';
-
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -11,5 +11,19 @@ import {Characters} from '../../shared/models/characters.model';
 })
 export class CharactersList {
 @Input() charactersFromParent! : Characters[];
-@Input() dragonBallZ! : string[];
+
+private flippedCards = new Set<number>();
+
+toggleCard(id: number): void {
+    if (this.flippedCards.has(id)) {
+      this.flippedCards.delete(id);
+    } else {
+      this.flippedCards.add(id);
+    }
+  }
+
+  isCardFlipped(id: number): boolean {
+    return this.flippedCards.has(id);
+  }
 }
+
