@@ -1,13 +1,1 @@
-<div class="container">
-  <input #searchInput type="text" placeholder="Chercher un personnage" (input)="onSearch(searchInput.value)" class="search-bar"  />
-</div>
-
-
-
-<!-- @if (charactersToGiveToChild && continentsToGiveToChild) { -->
-  <app-characters-list [charactersFromParent]="filterCharacters" />
-  <app-continent-list [continentsFromParent]="continentsToGiveToChild" />
-<!-- } -->
-
-
 <router-outlet />

@@ -3,21 +3,9 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-color: grey ;
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 
@@ -32,13 +20,13 @@ $primary-color: #4a90e2;   // bleu moderne
 $accent-color: #f5f7fa;    // gris clair
 $hover-color: darken($primary-color, 10%);
 
-.container {
+.app-header {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 10vh;
 
-  .search-bar {
+  .app-header__search-input {
     width: 500px;               // plus grande largeur
     padding: 15px 20px;         // plus d’espace intérieur
     font-size: 18px;            // texte plus grand
@@ -61,3 +49,4 @@ $hover-color: darken($primary-color, 10%);
     }
   }
 }
+

@@ -1,40 +1,43 @@
 <div class="characters-wrapper">
   <!-- @for pour iterer sur le tableau FromApi-->
   <!-- -->
-  @for (character of charactersFromParent; track character.id){
+  @for (character of charactersFromParent; track character.id;)
+  {
  <div class="card-container" (click)="toggleCard(character.id)">
       <div class="card" [class.flipped]="isCardFlipped(character.id)">
-        
+
         <!-- Face avant : Image du personnage -->
         <div class="card-face card-front">
           <div class="image-container">
             <img [src]="character.imageUrl" [alt]="character.fullName" class="character-image" />
           </div>
           <div class="card-title">
-            <h2>{{ character.fullName }}</h2>
+            <h2>{{ character.fullName }}
+              {{character.fullName || (character.firstName + ' ' + character.lastName) | mood: '🐉'}}
+            </h2>
             <p class="subtitle">{{ character.title }}</p>
           </div>
           <div class="click-hint">Cliquez pour plus d'infos</div>
         </div>
-        
+
         <!-- Face arrière : Informations détaillées -->
         <div class="card-face card-back">
           <div class="back-header">
             <h2>{{ character.fullName }}</h2>
           </div>
-          
+
           <div class="info-content">
             <div class="info-section">
               <div class="info-row">
                 <span class="label">Prénom:</span>
-                <span class="value">{{ character.firstName }}</span>
+                <span class="value">{{ character.firstName | mood: '🐉' }}</span>
               </div>
               <div class="info-row">
                 <span class="label">Nom:</span>
                 <span class="value">{{ character.lastName }}</span>
               </div>
             </div>
-            
+
             <div class="info-section">
               <div class="info-row">
                 <span class="label">Titre:</span>
@@ -45,7 +48,7 @@
                 <span class="value family-badge">{{ character.family }}</span>
               </div>
             </div>
-            
+
             <div class="info-section">
               <div class="info-row">
                 <span class="label">ID:</span>
@@ -53,12 +56,12 @@
               </div>
             </div>
           </div>
-          
+
           <div class="back-footer">
             <small>Cliquez pour revenir</small>
           </div>
         </div>
-        
+
       </div>
     </div>
   } @empty {
@@ -67,3 +70,7 @@
     </div>
   }
 </div>
+
+<div [class.ready]="isReady"><h1>c'est nous les plus forts</h1></div>
+<button (click)="toggleReady()">Toggle</button>
+

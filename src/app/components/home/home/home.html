@@ -1,0 +1,37 @@
+<header class="app-header">
+  <div class="app-header__inner">
+    <div class="app-header__search">
+      <span class="app-header__search-icon">🥸</span>
+      <input #searchInput class="app-header__search-input" type="text" placeholder="Chercher un personnage"
+    (input)=" onSearch(searchInput.value)">
+    </div>
+  </div>
+</header>
+
+<!-- <div class="container">
+  <input #searchInput type="text" placeholder=" Chercher un personnage" class="search-bar"  />
+</div> -->
+
+
+
+
+
+
+<!-- <div [ngClass]="{selected : isSelected, warning : isWarning}">
+  Salut : {{ isSelected}}
+</div> -->
+
+<!-- <div [ngClass]="['card', isActive ? 'active' : '' ]">
+  <p>Coucou ngClass</p>
+</div> -->
+
+<!-- <div [ngStyle]="{color: colorCrimson}">
+  <p>Coucou ngClass</p>
+ </div> -->
+
+<!-- <button (click)="toogleSelected()">Toogle isSelected</button> -->
+
+<!-- @if (charactersToGiveToChild && continentsToGiveToChild) { -->
+<app-characters-list [charactersFromParent]="filterCharacters" />
+<app-continent-list [continentsFromParent]="continentsToGiveToChild" />
+<!-- } -->
