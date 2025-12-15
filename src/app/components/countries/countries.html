@@ -1,5 +1,8 @@
 @for (country of countries; track country.id){
- <h2> {{ country.id}} - {{ country.name}}</h2>
+<button type="button" (click)="goToCountryDetails(country.id)">{{country.id }} - {{ country.name }}</button>
+
+ <!-- <h2> {{ country.id}} - {{ country.name}}</h2> -->
 }
 
-<button (click)="setTitle">Change Title</button>
+<router-outlet></router-outlet>
+

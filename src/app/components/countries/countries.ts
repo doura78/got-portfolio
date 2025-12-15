@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Data } from '@angular/router';
-import {Countries} from '../../shared/models/countries.model';
+import { CountriesModel } from '../../shared/models/countries.model';
 @Component({
   selector: 'app-countries',
-  imports: [Countries],
+  imports: [RouterOutlet],
   templateUrl: './countries.html',
   styleUrl: './countries.scss',
 })
@@ -13,6 +13,7 @@ export class Countries implements OnInit {
   protected currentTitle: string = '';
   protected countries: CountriesModel[]= [];
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
   private titleService: Title = inject(Title);
 
   ngOnInit(): void {
@@ -30,5 +31,9 @@ export class Countries implements OnInit {
     this.activatedRoute.data.subscribe((data : Data):void => {
       this.countries = data['countries'] ;
     })
+  }
+
+  protected goToCountryDetails(id: number) :void{
+    this.router.navigate(['/countries', id]);
   }
 }

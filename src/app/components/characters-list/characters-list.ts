@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import {Characters} from '../../shared/models/characters.model';
-import { CommonModule, NgClass,NgStyle } from '@angular/common';
-
+import { CommonModule, NgClass, NgStyle } from '@angular/common';
+import { MoodPipe } from '../../shared/pipes/mood-pipe';
 
 @Component({
   selector: 'app-characters-list',

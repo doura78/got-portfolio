@@ -1,6 +1,6 @@
 import { Characters } from './../../../shared/models/characters.model';
 import { CharacterService } from './../../../shared/service/character';
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Continents } from '../../../shared/models/continent.model';
 import { ChangeDetectorRef } from '@angular/core';
 import { ContinentService } from '../../../shared/service/continent';
@@ -8,6 +8,7 @@ import { RouterOutlet } from '@angular/router';
 import { CharactersList } from '../../characters-list/characters-list';
 import { ContinentsList } from '../../continent-list/continent-list';
 import { NgClass, NgStyle } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +16,16 @@ import { NgClass, NgStyle } from '@angular/common';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit {
+export class Home implements OnInit, AfterViewInit, OnDestroy {
+  // Accès à un élémént HTML par sa éférence(#searchInput dans notre cas)
+  @ViewChild('searchInput') private input! : ElementRef<HTMLInputElement>
   // On injecte le service précedemment créé
   private characterService = inject(CharacterService);
   private continentService = inject(ContinentService);
   private cdr = inject(ChangeDetectorRef);
 
-
   //On stock tous les personnages dans un tableau
+    private subscriptions: Subscription[] = [];
   protected charactersToGiveToChild!: Characters[]; // le ! ne donnera pas de valeur d'initialisation (=....)
   protected continentsToGiveToChild!: Continents[];
   protected filterCharacters!: Characters[];
@@ -39,8 +42,12 @@ export class Home implements OnInit {
 
   // On subscribe uniquement les observables
   ngOnInit() {
-    this.getCharaactersInTemplate();
+    this.getCharactersInTemplate();
     this.getAllContinentsInTemplate();
+  }
+
+  ngAfterViewInit(): void {
+    this.input.nativeElement.focus();
   }
 
   protected onSearch(term: string): void {
@@ -50,31 +57,21 @@ export class Home implements OnInit {
     });
   }
 
-  private getAllContinentsInTemplate() {
-    this.continentService.getAllContinents().subscribe((ContinentsFromApi: Continents[]) => {
+  private getAllContinentsInTemplate(): void {
+   this.subscriptions.push(this.continentService.getAllContinents().subscribe((ContinentsFromApi: Continents[]) => {
       this.continentsToGiveToChild = ContinentsFromApi;
       this.cdr.detectChanges();
-    });
+    }));
   }
-  private getCharaactersInTemplate() {
-    this.characterService.getCharacters().subscribe((CharactersFromApi: Characters[]) => {
-      this.charactersToGiveToChild = CharactersFromApi;
-      this.filterCharacters = CharactersFromApi;
-      console.log(CharactersFromApi);
+  private getCharactersInTemplate(): void {
+    this.subscriptions.push(this.characterService.getCharacters().subscribe((charactersFromApi: Characters[]) => {
+      this.charactersToGiveToChild = charactersFromApi;
+      this.filterCharacters = charactersFromApi;
+      this.cdr.detectChanges();
+    }));
+  }
 
-
-      this.characterService.getCharacters().subscribe((CharactersFromApi: Characters[]) => {
-        this.charactersToGiveToChild = CharactersFromApi;
-        console.log(CharactersFromApi)
-
-        this.continentService.getAllContinents().subscribe((ContinentsFromApi: Continents[]) => {
-          this.continentsToGiveToChild = ContinentsFromApi;
-          this.cdr.detectChanges();
-        });
-
-      });
-    }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription: Subscription) : void => subscription.unsubscribe())
   }
 }
-
-
