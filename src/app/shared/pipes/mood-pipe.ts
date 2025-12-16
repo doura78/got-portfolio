@@ -8,7 +8,7 @@ export class MoodPipe implements PipeTransform {
   transform(value: string): string {
     if (!value)
       return '';
-    return value + ('🐉');
+    return value + 'mood';
   }
 
 }

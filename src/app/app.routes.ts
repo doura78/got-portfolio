@@ -9,7 +9,7 @@ export const routes: Routes = [
     path: 'countries',
     loadComponent: (): any =>
       import('./components/countries/countries').then(
-        (component): any => component.Countries), title: 'Countries',
+        (component) => component.Countries), title: 'Countries',
     // Lazy-loading : Charger dynamiquement le composant. Si la route n'est pas activée, Le composant n'est pas chargé
     data: {
       countries: [
@@ -19,18 +19,18 @@ export const routes: Routes = [
         { id: 4, name: 'Spain' }
       ]
     },
- 
 
-    children: [
-      // :id est un paramètre de route dynamique.
-  
+
+
+      // Route enfant de /continents.
+      children: [
 {
     path: 'cities',
     loadComponent: (): any => import('./components/cities/cities').then((component): any => component.Cities), title: 'Cities',
 
     data: {
       cities: [
-        { id: 1, name: 'Paris', inhabitants: 2161000, typicalDish: 'Croissant', currency: 'EUR', flag: '🇫🇷' },
+        { id: 1, name: 'Paris', inhabitants: 2161000, typicalDish: 'Croissant', currency: 'EUR', flag: 'FR' },
         { id: 2, name: 'Lyon', inhabitants: 522000, typicalDish: 'Quenelles', currency: 'EUR', flag: '🇫🇷' },
         { id: 3, name: 'Marseille', inhabitants: 873000, typicalDish: 'Bouillabaisse', currency: 'EUR', flag: '🇫🇷' },
         { id: 4, name: 'New York', inhabitants: 8336000, typicalDish: 'New York-style pizza', currency: 'USD', flag: '🇺🇸' },

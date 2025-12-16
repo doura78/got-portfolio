@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Data } from '@angular/router';
 import { CitiesList } from '../cities-list/cities-list';
 import { CitiesModel } from '../../shared/models/cities.model';
 
@@ -19,7 +18,7 @@ export class Cities implements OnInit {
 protected currentTitle: string = '';
 protected cities : CitiesModel [] = [];
 
-  
+
 
   ngOnInit(): void {
     this.getAllCities();
@@ -28,13 +27,17 @@ protected cities : CitiesModel [] = [];
 
 
   private getAllCities() : void {
-    this.activatedRoute.data.subscribe((data: Data): void => {
+    this.activatedRoute.data.subscribe((data): void => {
       this.cities = data['cities'];
-    
+
     })
   }
 
   private getTitle() : void {
     this.currentTitle = this.titleService.getTitle();
+  }
+
+  protected addCity(createdCity: CitiesModel) {
+    this.cities = [...this.cities, createdCity]
   }
 }

@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import {Characters} from '../../shared/models/characters.model';
-import { CommonModule, NgClass, NgStyle } from '@angular/common';
-import { MoodPipe } from '../../shared/pipes/mood-pipe';
+import { CommonModule} from '@angular/common';
+import {SlugifyPipe} from '../../shared/pipes/slugify-pipe';
+import {MoodPipe} from '../../shared/pipes/mood-pipe';
 
 @Component({
   selector: 'app-characters-list',
-  imports: [CommonModule, NgClass, NgStyle],
+  imports: [CommonModule, SlugifyPipe, MoodPipe],
   templateUrl: './characters-list.html',
   styleUrl: './characters-list.scss',
 })

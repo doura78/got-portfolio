@@ -9,7 +9,7 @@ export class SlugifyPipe implements PipeTransform {
   //  Méthode transform Obligatoire pour créer une pipe. On transforme la valeur
   transform(value: string | undefined): string | undefined {
     if (!value) return '';
-    return value.toLocaleLowerCase().replace( /\s+/g,  '_')
+    return value.toLowerCase().replace( /\s+/g,  '_')
   }
 
 }

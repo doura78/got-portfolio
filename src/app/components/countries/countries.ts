@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { Data } from '@angular/router';
 import { CountriesModel } from '../../shared/models/countries.model';
 @Component({
   selector: 'app-countries',
@@ -10,30 +9,30 @@ import { CountriesModel } from '../../shared/models/countries.model';
   styleUrl: './countries.scss',
 })
 export class Countries implements OnInit {
-  protected currentTitle: string = '';
-  protected countries: CountriesModel[]= [];
+  protected currentTitle = '';
+  protected countries: CountriesModel[] = [];
+
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private router: Router = inject(Router);
   private titleService: Title = inject(Title);
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCountries();
     this.currentTitle = this.titleService.getTitle();
   }
 
-  protected changeTitle(): void {
+  protected changeTile() {
     this.titleService.setTitle('Pays');
     this.currentTitle = this.titleService.getTitle();
-    console.log(this.currentTitle);
   }
 
   private getCountries()  {
-    this.activatedRoute.data.subscribe((data : Data):void => {
+    this.activatedRoute.data.subscribe((data) => {
       this.countries = data['countries'] ;
     })
   }
 
-  protected goToCountryDetails(id: number) :void{
-    this.router.navigate(['/countries', id]);
+  protected goToCountryDetails(id: number){
+    this.router.navigate(['countries', id]);
   }
 }

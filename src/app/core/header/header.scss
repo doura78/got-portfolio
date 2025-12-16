@@ -1,3 +1,4 @@
+
 :host {
   --got-bg: #0b0f16;
   --got-bg-2: #0f1623;
@@ -14,7 +15,7 @@
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--got-border);
-  background: linear-gradient(180deg, rgba(11, 15, 22, 0.92), rgba(11, 15, 22, 0.72));
+  background: grey;
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);

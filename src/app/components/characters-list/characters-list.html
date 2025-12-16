@@ -9,13 +9,13 @@
         <!-- Face avant : Image du personnage -->
         <div class="card-face card-front">
           <div class="image-container">
-            <!-- <img [src]="character.imageUrl" [alt]="character.fullName" class="character-image" /> -->
+             <img [src]="character.imageUrl" [alt]="character.fullName" class="character-image" />
           </div>
           <div class="card-title">
-            <h2>{{ character.fullName }}
-              <!-- {{character.fullName || (character.firstName + ' ' + character.lastName) | mood}} -->
+            <h2>
+               {{character.fullName || (character.firstName + ' ' + character.lastName) }}
             </h2>
-            <p class="subtitle">{{ character.title }}</p>
+            <p class="subtitle">{{ character.title | slugify}}</p>
           </div>
           <div class="click-hint">Cliquez pour plus d'infos</div>
         </div>
@@ -30,7 +30,7 @@
             <div class="info-section">
               <div class="info-row">
                 <span class="label">Prénom:</span>
-                <!-- <span class="value">{{ character.firstName | mood}}</span> -->
+                 <span class="value">{{ character.firstName }}</span>
               </div>
               <div class="info-row">
                 <span class="label">Nom:</span>
@@ -71,6 +71,5 @@
   }
 </div>
 
-<div [class.ready]="isReady"><h1>c'est nous les plus forts</h1></div>
-<button (click)="toggleReady()">Toggle</button>
+
 
