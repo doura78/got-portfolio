@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+sitemap: https://got-portfolio-as.netlify.app/
